@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 21st Birthday, Jace! 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;600;700&family=Caveat:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--
+        ══════════════════════════════════════════
+        💖 HOW TO PERSONALIZE:
+        Open script.js and edit the CONFIG block at
+        the very top (PHOTOS + MUSIC_FILE).
+        That's it — everything loads automatically.
+        ══════════════════════════════════════════
+    -->
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="cursor"></div>
+    <div class="custom-cursor-trail" id="cursorTrail"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Background Music (src is set from script.js config) -->
+    <audio id="bgMusic" loop preload="auto"></audio>
+
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <div class="splash-envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body">
+                    <div class="envelope-letter">
+                        <span>💌</span>
+                        <p>For Jace</p>
+                    </div>
+                </div>
+            </div>
+            <p class="splash-text">Tap to open your surprise...</p>
+        </div>
+    </div>
+
+    <!-- Music Toggle -->
+    <button class="music-toggle" id="musicToggle" title="Toggle Music">
+        <span class="music-icon" id="musicIcon">🎵</span>
+    </button>
+
+    <!-- Navigation Dots -->
+    <nav class="nav-dots" id="navDots">
+        <a href="#hero" class="dot active" data-section="hero"></a>
+        <a href="#typewriter" class="dot" data-section="typewriter"></a>
+        <a href="#cake" class="dot" data-section="cake"></a>
+        <a href="#polaroids" class="dot" data-section="polaroids"></a>
+        <a href="#reasons" class="dot" data-section="reasons"></a>
+        <a href="#wishes" class="dot" data-section="wishes"></a>
+        <a href="#scratch" class="dot" data-section="scratch"></a>
+        <a href="#finale" class="dot" data-section="finale"></a>
+    </nav>
+
+    <!-- SECTION 1: Hero -->
+    <section class="section hero-section" id="hero">
+        <div class="hero-content">
+            <div class="hero-photo-container">
+                <div class="hero-photo">
+                    <img id="heroImg" alt="Jace Boniface" hidden>
+                    <div class="photo-placeholder" id="photoPlaceholder">
+                        <span class="placeholder-icon">👤</span>
+                        <span>Add Jace's<br/>Photo</span>
+                    </div>
+                    <div class="photo-frame"></div>
+                </div>
+                <div class="photo-badge">21</div>
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-line">Happy Birthday</span>
+                <span class="hero-name">Jace Boniface</span>
+            </h1>
+            <p class="hero-date">September 16, 2026</p>
+            <p class="hero-quote">"In a world full of people, you're my favorite person 💕"</p>
+
+            <div class="countdown-modern" id="countdown">
+                <div class="countdown-ring">
+                    <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"></circle><circle class="ring-progress" cx="50" cy="50" r="45"></circle></svg>
+                    <div class="countdown-content"><span class="countdown-number" id="cdDays">00</span><span class="countdown-label">Days</span></div>
+                </div>
+                <div class="countdown-ring">
+                    <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"></circle><circle class="ring-progress" cx="50" cy="50" r="45"></circle></svg>
+                    <div class="countdown-content"><span class="countdown-number" id="cdHours">00</span><span class="countdown-label">Hours</span></div>
+                </div>
+                <div class="countdown-ring">
+                    <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"></circle><circle class="ring-progress" cx="50" cy="50" r="45"></circle></svg>
+                    <div class="countdown-content"><span class="countdown-number" id="cdMins">00</span><span class="countdown-label">Minutes</span></div>
+                </div>
+                <div class="countdown-ring">
+                    <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="45"></circle><circle class="ring-progress" cx="50" cy="50" r="45"></circle></svg>
+                    <div class="countdown-content"><span class="countdown-number" id="cdSecs">00</span><span class="countdown-label">Seconds</span></div>
+                </div>
+            </div>
+
+            <a href="#typewriter" class="scroll-hint">
+                <span>Scroll Down</span>
+                <div class="scroll-arrow">↓</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Typewriter Letter -->
+    <section class="section typewriter-section" id="typewriter">
+        <div class="typewriter-container">
+            <div class="letter-paper">
+                <div class="letter-header">
+                    <span class="letter-date">September 16, 2026</span>
+                    <span class="letter-to">My Dearest Jace,</span>
+                </div>
+                <div class="typewriter-body">
+                    <span class="typewriter-text" id="typewriterText"></span><span class="typewriter-cursor" id="typewriterCursor">|</span>
+                </div>
+                <div class="letter-signature" id="letterSignature">Forever & Always Yours 💕</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Birthday Cake -->
+    <section class="section cake-section" id="cake">
+        <h2 class="section-title glow-text">Make a Wish! 🕯️</h2>
+        <div class="cake-wrapper">
+            <div class="cake" id="birthdayCake">
+                <div class="candles">
+                    <div class="candle"><div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div><div class="candle-body"></div></div>
+                    <div class="candle"><div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div><div class="candle-body"></div></div>
+                    <div class="candle"><div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div><div class="candle-body"></div></div>
+                    <div class="candle"><div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div><div class="candle-body"></div></div>
+                    <div class="candle"><div class="flame-wrapper"><div class="flame"></div><div class="flame-glow"></div></div><div class="candle-body"></div></div>
+                </div>
+                <div class="cake-layer cake-top"><div class="frosting frosting-top"></div><span class="cake-text-top">Jace</span></div>
+                <div class="cake-layer cake-middle"><div class="frosting frosting-middle"></div><div class="cake-dots"><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+                <div class="cake-layer cake-bottom"><div class="frosting frosting-bottom"></div><span class="cake-text-bottom">21</span></div>
+                <div class="cake-plate"></div>
+            </div>
+        </div>
+        <div class="blow-controls">
+            <button class="blow-btn" id="blowBtn">🌬️ Blow Out the Candles!</button>
+            <p class="blow-hint" id="blowHint">Close your eyes, make a wish... then press the button!</p>
+        </div>
+
+        <div class="blow-surprise" id="blowSurprise">
+            <canvas id="fireworksCanvas"></canvas>
+            <div class="surprise-content">
+                <h2>🎉 Wish Granted! 🎉</h2>
+                <p>Happy 21st Birthday, my love! Here's to forever with you.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Polaroids (photos load from config) -->
+    <section class="section polaroid-section" id="polaroids">
+        <h2 class="section-title glow-text">Our Memory Lane 📸</h2>
+        <div class="polaroid-stack" id="polaroidStack">
+            <div class="polaroid active" style="--tilt:-8deg; --x:-30px; --y:10px; z-index:5;">
+                <div class="polaroid-image" data-slot="polaroid-0" style="background:linear-gradient(135deg,#ff9a9e,#fad0c4);"><span class="polaroid-emoji">🌅</span></div>
+                <div class="polaroid-caption">Our first sunset together</div>
+            </div>
+            <div class="polaroid" style="--tilt:5deg; --x:20px; --y:-15px; z-index:4;">
+                <div class="polaroid-image" data-slot="polaroid-1" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);"><span class="polaroid-emoji">🎂</span></div>
+                <div class="polaroid-caption">That birthday surprise!</div>
+            </div>
+            <div class="polaroid" style="--tilt:-3deg; --x:-10px; --y:20px; z-index:3;">
+                <div class="polaroid-image" data-slot="polaroid-2" style="background:linear-gradient(135deg,#ffecd2,#fcb69f);"><span class="polaroid-emoji">🏖️</span></div>
+                <div class="polaroid-caption">Beach day adventures</div>
+            </div>
+            <div class="polaroid" style="--tilt:7deg; --x:15px; --y:-5px; z-index:2;">
+                <div class="polaroid-image" data-slot="polaroid-3" style="background:linear-gradient(135deg,#667eea,#764ba2);"><span class="polaroid-emoji">🌃</span></div>
+                <div class="polaroid-caption">Late night city walks</div>
+            </div>
+            <div class="polaroid" style="--tilt:-6deg; --x:-20px; --y:5px; z-index:1;">
+                <div class="polaroid-image" data-slot="polaroid-4" style="background:linear-gradient(135deg,#f093fb,#f5576c);"><span class="polaroid-emoji">💑</span></div>
+                <div class="polaroid-caption">Us being us ♡</div>
+            </div>
+        </div>
+        <div class="polaroid-nav">
+            <button class="polaroid-arrow" id="prevPolaroid">←</button>
+            <span class="polaroid-counter" id="polaroidCounter">1 / 5</span>
+            <button class="polaroid-arrow" id="nextPolaroid">→</button>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Reasons -->
+    <section class="section reasons-section" id="reasons">
+        <h2 class="section-title glow-text">Reasons I Love You 💝</h2>
+        <div class="reasons-grid">
+            <div class="reason-card" data-reason="Your laugh is my favorite sound in the entire universe."><div class="reason-inner"><div class="reason-front"><span>💖</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="The way you look at me makes me feel like the only person in the room."><div class="reason-inner"><div class="reason-front"><span>✨</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="Your hugs feel like coming home after the longest journey."><div class="reason-inner"><div class="reason-front"><span>🤗</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="You make even grocery shopping feel like an adventure."><div class="reason-inner"><div class="reason-front"><span>🛒</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="Your kindness to everyone around you inspires me every single day."><div class="reason-inner"><div class="reason-front"><span>🌟</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="I love how you scrunch your nose when you're thinking hard."><div class="reason-inner"><div class="reason-front"><span>🥰</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="You believed in me when I didn't believe in myself."><div class="reason-inner"><div class="reason-front"><span>💪</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="Every love song suddenly makes sense because of you, Jace."><div class="reason-inner"><div class="reason-front"><span>🎵</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="You're my best friend, my safe place, and my greatest adventure all in one."><div class="reason-inner"><div class="reason-front"><span>🌍</span></div><div class="reason-back"><p></p></div></div></div>
+            <div class="reason-card" data-reason="You make me want to be better every single day."><div class="reason-inner"><div class="reason-front"><span>💫</span></div><div class="reason-back"><p></p></div></div></div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Wishes -->
+    <section class="section wishes-section" id="wishes">
+        <h2 class="section-title glow-text">My Wishes For You 🌟</h2>
+        <div class="wishes-container">
+            <div class="wish-card"><div class="wish-icon">💖</div><h3>Endless Joy</h3><p>May your life be filled with moments that make your heart smile and your soul dance.</p></div>
+            <div class="wish-card"><div class="wish-icon">🎯</div><h3>Success & Dreams</h3><p>May all your dreams take flight and every goal you set becomes your reality.</p></div>
+            <div class="wish-card"><div class="wish-icon">💕</div><h3>Unconditional Love</h3><p>May you always feel loved, cherished, and valued — because you truly are everything to me.</p></div>
+            <div class="wish-card"><div class="wish-icon">✨</div><h3>Peace & Happiness</h3><p>May peace fill your heart and happiness follow you wherever you go.</p></div>
+        </div>
+        <div class="sweet-message">
+            <p class="sweet-text">"You are the missing piece I never knew I was searching for. With you, life is complete, beautiful, and full of endless possibilities. Happy 21st, my love! 💕"</p>
+        </div>
+    </section>
+
+    <!-- SECTION 7: Scratch-Off -->
+    <section class="section scratch-section" id="scratch">
+        <h2 class="section-title glow-text">Scratch to Reveal 🎁</h2>
+        <div class="scratch-container">
+            <div class="scratch-reveal">
+                <div class="secret-content">
+                    <span class="secret-emoji">✈️🌴</span>
+                    <h3>Surprise, Jace!</h3>
+                    <p class="secret-text">Redeemable for a Romantic Weekend Getaway — Just You & Me</p>
+                    <p class="secret-subtext">Valid forever. No expiration on love. 💕</p>
+                </div>
+            </div>
+            <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+        </div>
+        <p class="scratch-percent" id="scratchPercent"></p>
+    </section>
+
+    <!-- SECTION 8: Finale -->
+    <section class="section finale-section" id="finale">
+        <div class="finale-content">
+            <h1 class="finale-title">Happy 21st, Jace!</h1>
+            <p class="finale-message">
+                Here's to the most incredible man I know.<br />
+                May this year bring you everything your beautiful heart desires.<br />
+                I love you more than words on a screen could ever express.<br /><br />
+                <span class="finale-signature">Forever yours 💋</span>
+            </p>
+            <div class="mini-gallery">
+                <h3 class="gallery-title">Moments That Made Us</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-slot="gallery-0" style="background:linear-gradient(135deg,#ff9a9e,#fad0c4);"><span>🌅</span></div>
+                    <div class="gallery-item" data-slot="gallery-1" style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);"><span>💑</span></div>
+                    <div class="gallery-item" data-slot="gallery-2" style="background:linear-gradient(135deg,#ffecd2,#fcb69f);"><span>🎉</span></div>
+                    <div class="gallery-item" data-slot="gallery-3" style="background:linear-gradient(135deg,#667eea,#764ba2);"><span>✨</span></div>
+                </div>
+            </div>
+            <div class="final-quote">
+                <p>"In you, I've found the love of my life and my closest friend. Here's to growing old together, one beautiful day at a time."</p>
+            </div>
+            <button class="replay-btn" id="replayBtn">🔄 Relive the Magic</button>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
